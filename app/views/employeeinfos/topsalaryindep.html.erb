@@ -1,0 +1,31 @@
+<h1>Listing employeeinfos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>Salary</th>
+      <th>Department</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employeeinfo.joins('employeeinfo, department').limit(5).each do |employeeinfo| %>
+      <tr>
+        <td><%= employeeinfo.name %></td>
+        <td><%= employeeinfo.email %></td>
+        <td><%= employeeinfo.age %></td>
+        <td><%= employeeinfo.salary %></td>
+        <td><%= employeeinfo.department.name %></td>
+        <td><%= link_to 'Show', employeeinfo %></td>
+        <td><%= link_to 'Edit', edit_employeeinfo_path(employeeinfo) %></td>
+        <td><%= link_to 'Destroy', employeeinfo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
